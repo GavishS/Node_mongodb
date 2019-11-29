@@ -1,0 +1,99 @@
+<html lang="en" ng-app="NodeApp">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>Datatables in action .Server side processing</title> -->
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/dataTables/datatables.min.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css" />
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/datatables.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.8/es5-shim.min.js"></script>
+    <script type="text/javascript" src="js/dataTables.responsive.min.js"></script>
+
+    <script src="js/underscore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.js"></script>
+    <script src="appjs/app.js"></script>
+
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .nav-tabs {
+            margin-bottom: 15px;
+        }
+
+        input[type=text] {
+            border-radius: 0px !important;
+        }
+
+        .ui-datepicker-trigger {
+            position: absolute;
+            margin-top: -28px;
+            right: 15px;
+            border: none;
+            background-color: transparent;
+        }
+
+        .ng-valid {
+            border-left: 2px solid #090;
+        }
+
+        .ng-invalid {
+            border-left: 2px solid #900;
+        }
+    </style>
+</head>
+
+<body ng-controller="UserController">
+    <div class='well'>
+        <div class='form-group row'>
+            <div class='col-xs-3'>
+                <label>Start Date</label>
+                <input type=text date-picker placeholder='MM/DD/YYYY' class='form-control'
+                    ng-model='modelSearch.StartDate' nmin-date='-30D' max-date='+0D'>
+            </div>
+            <div class='col-xs-3'>
+                <label>End Date</label>
+                <input type=text date-picker placeholder='MM/DD/YYYY' class='form-control'
+                    ng-model='modelSearch.EndDate'>
+            </div>
+            <div class='col-xs-3'>
+                <label>Search Option</label>
+                <select name="idSalescategory" class="form-control" ng-model="modelSearch.SarchType"
+                    ng-change="Search(modelSearch.SarchType)">
+                    <option ng-repeat="o in lstSearchType" ng-selected="o.name==modelSearch.SarchType"
+                        value="{{o.name}}">{{o.name}}
+                    </option>
+                </select>
+            </div>
+            <div class='col-xs-3' style="margin-top:25px">
+                <a ng-click="Search()" class="btn btn-xs">
+                    <label>Search</label>
+                </a>
+            </div>
+        </div>
+        <pre> TotalUsers : {{TotalUsers}}</pre>
+    </div>
+    <div class="container">
+        <table id="UserTable" class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Total Views</th>
+                    <th>Total Product</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+
+</html>
